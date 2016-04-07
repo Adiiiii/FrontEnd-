@@ -1,0 +1,197 @@
+	<!doctype html>
+	<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="http://underscorejs.org/underscore-min.js"></script>
+		<!-- css -->
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+		
+<style>
+.body{
+
+	margin: 0 ;
+	padding: 0;
+	
+}
+
+.appContainer{
+	display: block;
+	margin: 0 auto;
+	border: 2px solid black;
+	width:100%;
+	height:900px;
+
+	text-align: center;
+	 background-color: black;
+
+
+}
+
+h2
+{
+	color:grey;
+	font-family: "Oswald", sans-serif;
+
+}
+h1
+{
+	color:white;
+	font-family: "Oswald", sans-serif;
+
+}
+
+.appContainer::-webkit-scrollbar {
+    width: .5em;
+}
+ 
+.appContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.appContainer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
+
+
+ul 
+{
+text-align: left;	
+text-decoration: none;
+list-style-type:none; 
+
+}
+
+ul li
+{
+	color:white;
+	
+	border-bottom: 2px solid white;
+	 font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+ul li:first-child {
+      border-top: 2px solid white;
+}
+
+
+.li-true
+{
+	color: grey;
+}
+
+.button_remove
+{
+display: inline-block;
+padding: 10px 25px;
+margin-top: 2px;
+ font-weight: 300;
+ background-color: grey;
+ text-align: center;
+ text-decoration: none;
+ border: none;
+
+}
+
+.input_todo
+{
+	display: inline-block;
+	font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.8;
+
+}
+
+</style>
+
+		<script>
+		 
+		 var app=angular.module('todoApp',[]);
+		 app.controller('todocontroller',todocontroller);
+
+		function todocontroller($scope)
+		{
+			
+			if (localStorage.getItem("data")!=null){
+				$scope.todoAll=JSON.parse(localStorage.getItem("data"));
+			}
+			else
+			{
+			$scope.todoAll=[];
+			}
+			$scope.add= function( ){
+				console.log(event.which+" "+$scope.todo);
+				if(event.which==13 && $scope.todo!='')
+				{
+					$scope.todoAll.push({"text":$scope.todo,"done":false})
+					$scope.todo='';
+					localStorage.removeItem("data");
+					localStorage.setItem("data",JSON.stringify($scope.todoAll));
+				}
+
+			}
+
+			$scope.remove=function()
+			{
+				console.log($scope.todoAll);
+			  $scope.todoAll =   _.filter($scope.todoAll, function(node) {
+                    return !(node.done == true);
+                });
+			 localStorage.removeItem("data");
+					localStorage.setItem("data",JSON.stringify($scope.todoAll));
+			}
+			$scope.count=function()
+			{
+				// return( $scope.todoAll.length);
+
+				 counter= _.filter($scope.todoAll,function(temp){ return (temp.done==false);});
+				return counter.length;
+			}
+			$scope.count2=function()
+			{
+				return( $scope.todoAll.length);
+			}
+
+			$scope.taskss=function()
+			{
+				counter= _.filter($scope.todoAll,function(temp){ return (temp.done==false);});
+				if (counter.length>1)
+					return "tasks";
+				else 
+					return "task";
+			}
+
+		}
+
+		</script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+
+		<div class="appContainer" ng-app="todoApp" ng-controller="todocontroller" >
+	
+			<h2 align="center"	>You have </h2><h1>{{count()}} </h1><h2 align="center"> {{taskss()}} left </h2>
+	
+			<div id ="input" width="100%" 	>
+				<input type="text" ng-model="todo" class="input_todo" ng-keyup="add()" placeholder="Enter Task here !"/> 
+			</div>
+			<div class="display_todo">
+				<button ng-show="count2()" ng-click="remove()" class="button_remove">Remove</button>
+				<ul>
+					<li class="li-{{task.done}}" ng-repeat="task in todoAll"> <input type="checkbox" ng-model="task.done" value={{task.done}}/ > {{task.text}} </li>
+				</ul>
+		
+			</div>
+	
+		</div>
+
+
+	</body>
+	</html>
