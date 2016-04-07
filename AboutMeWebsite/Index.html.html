@@ -1,0 +1,168 @@
+<!Doctype html>
+<html>
+<head>
+  <title>higgh all the time</title>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css'>
+    
+    
+  <style type="text/css">
+  *, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+  body {
+  font-size: 100%;
+  font-family: "Droid Serif", serif;
+  color: #333333;
+  background-color: white;
+      padding: 0;
+      margin: 0;
+  /* prevent ie from showing the horizontal scrollbar */
+  overflow-x: hidden;
+}
+body.overflow-hidden {
+  /* when author bio is visible, the out-of-focus content won't scroll */
+  overflow: hidden;
+}
+  main{
+    position:realative;
+    
+
+  }
+  .cd-placeholder-1{
+    background-image: url("Images/header2.jpg");
+      background-repeat: no-repeat;
+    background-size:cover;
+/*    background-attachment: fixed;*/
+  }
+       .cd-placeholder-1 h1 {
+           color: navajowhite;
+           font-weight: 900;
+           font-size: 5em;
+    
+  } 
+
+  .cd-placeholder-1 .cd-section
+  {
+    padding: 15em 0;
+      height:768px;
+  }
+
+  .cd-placeholder-2{
+    background-color: sandybrown;
+      color:white;  
+  }
+  
+          .cd-placeholder-3{
+        background-image: url(Images/content2.jpg);
+                background-repeat: no-repeat;
+        background-size:cover;
+          background-attachment: fixed;
+      
+      }
+  .cd-section
+  {
+      
+      text-align: center;
+      padding: 5em 0;
+  }
+
+  .cd-container
+  {
+    margin:0 auto;
+    width: 80%;
+  }
+      
+      .skill{
+          width:250px;
+          height:250px;
+          display: inline-block;
+          margin: 0 auto;
+          background-repeat: no-repeat;
+      }
+      
+      #skill1{
+         
+           background-image: url("Images/html1.png")
+      }
+      #skill2{
+          background-image: url("Images/skill2_250x250.png");
+      }
+      #skill3{
+          background-image: url(Images/javascript.png)
+      }
+      @media only screen and (max-width:359px){
+         .cd-placeholder-1 h1 {
+           color: navajowhite;
+           font-weight: 900;
+           font-size: 3.2em;
+    
+  }  
+          .skill{
+              width:200px;
+              height:200px;
+                   display: inline-block;
+          margin: 0 auto;
+              background-size: contain;
+          background-repeat: no-repeat;
+          }
+      }
+
+  </style>
+</head>
+<body>
+  <main>
+    <div class="cd-placeholder-1">
+      <div class="cd-section">
+        <div class="cd-container">
+          <h1 class="header">Aditya Saxena</h1>
+        <h3 class="header">web Developer</h3>
+        </div>
+      </div>
+    </div>
+    <div class="cd-placeholder-2">
+      <div class="cd-section">
+        <div class="cd-container">
+          <h1>Aim</h1>
+          <p>To keep learning and developing awesome digital stuff</p>
+        </div>
+      </div>
+    </div>
+        <div class="cd-placeholder-3">
+      <div class="cd-section">
+        <div class="cd-container">
+          <h1>Skill Set</h1>
+            
+            <div class="skill" id="skill1"></div>
+            <div class="skill" id="skill2"></div>
+            <div class="skill" id="skill3"></div>
+                
+        </div>
+      </div>
+    </div>
+          <div class="cd-placeholder-2">
+      <div class="cd-section">
+        <div class="cd-container">
+          <h1>Current Workplace</h1>
+          <p>Working at TCS as a Java Developer. Responsible for both front end and back end development.</p>
+        </div>
+      </div>
+    </div>
+      
+  </main>
+    <script type="text/javascript">
+    window.onscroll=headerfix;
+        function headerfix(){
+            if(window.pageYOffset>=200){
+                document.getElementsByClassName("header")[0].style.color="white";
+                document.getElementsByClassName("header")[1].style.color="white";  
+            }
+            else{
+                 document.getElementsByClassName("header")[0].style.color="black";
+                document.getElementsByClassName("header")[1].style.color="black"; 
+            }
+        }
+    </script>
+</body>
